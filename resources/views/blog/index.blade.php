@@ -2,10 +2,10 @@
     <!-- Hero Section -->
     <div class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white py-20">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <h1 class="text-6xl font-bold mb-4 tracking-wide">HOT OFF THE PRESS</h1>
+            <h1 class="text-6xl font-extrabold mb-4 tracking-wide uppercase">Latest Blog Highlights</h1>
             <div class="w-24 h-1 bg-cyan-400 mx-auto mb-6"></div>
             <p class="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
-                Of an or game gate west face shed. No great but music too old found arose.
+                Dive into insightful articles and stories curated just for you.
             </p>
         </div>
     </div>
@@ -14,7 +14,6 @@
     <div class="bg-gray-50 min-h-screen py-16">
         <div class="max-w-7xl mx-auto px-4">
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
-                
                 <!-- Blog Posts Section -->
                 <div class="lg:col-span-3">
                     <div class="space-y-12">
@@ -37,43 +36,43 @@
                                         </div>
                                     </div>
                                 @endif
-                                
+
                                 <div class="p-8">
                                     <!-- Post Meta -->
-                                    <div class="flex items-center space-x-4 text-sm text-gray-500 mb-4">
+                                    <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-4">
                                         <span class="flex items-center">
                                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                                             </svg>
-                                            DANNY JONES
+                                            {{ $post->author ?? 'Admin' }}
                                         </span>
                                         <span class="flex items-center">
                                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
                                             </svg>
-                                            STYLE
+                                            {{ $post->category->name ?? 'Uncategorized' }}
                                         </span>
                                         <span class="flex items-center">
                                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
                                             </svg>
-                                            14 COMMENTS
+                                            {{ $post->comments_count ?? '0' }} Comments
                                         </span>
                                     </div>
 
                                     <!-- Post Title -->
                                     <h2 class="text-3xl font-bold text-gray-900 mb-4 hover:text-cyan-600 transition-colors duration-300">
-                                        {{ $post->title ?? 'CIVILITY VICINITY GRACEFUL IS IT AT.' }}
+                                        {{ $post->title ?? 'Untitled Post' }}
                                     </h2>
 
                                     <!-- Post Excerpt -->
                                     <p class="text-gray-600 leading-relaxed mb-6 text-lg">
-                                        {{ $post->excerpt ?? 'Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris.' }}
+                                        {{ $post->description ?? 'No excerpt available for this post.' }}
                                     </p>
 
                                     <!-- Read More Button -->
                                     <div class="pt-4">
-                                        <a href="#" class="inline-flex items-center px-6 py-3 border-2 border-cyan-500 text-cyan-500 font-semibold hover:bg-cyan-500 hover:text-white transition-all duration-300 rounded-lg group">
+                                        <a href="" class="inline-flex items-center px-6 py-3 border-2 border-cyan-500 text-cyan-500 font-semibold hover:bg-cyan-500 hover:text-white transition-all duration-300 rounded-lg group">
                                             READ MORE
                                             <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -92,97 +91,35 @@
                         </div>
                     </div>
                 </div>
+              <!-- Tags Sidebar -->
+<!-- Tags Sidebar -->
+<div>
+    <div class="bg-white rounded-2xl shadow-lg p-6 sticky top-24">
+        <h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Filter by Tags</h3>
 
-                <!-- Sidebar -->
-                <div class="lg:col-span-1">
-                    <div class="sticky top-8 space-y-8">
-                        
-                        <!-- Search Box -->
-                        <div class="bg-white rounded-2xl shadow-lg p-6">
-                            <div class="relative">
-                                <input type="text" 
-                                       placeholder="Search..." 
-                                       class="w-full pl-4 pr-12 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent outline-none transition-all duration-300">
-                                <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-cyan-500 hover:text-cyan-700 transition-colors duration-300">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
+        <div class="flex flex-wrap gap-3 mb-4">
+            @foreach ($tags as $tag)
+                @php
+                    $isSelected = in_array($tag->id, $tagIds ?? []);
+                    $newTagIds = $isSelected
+                        ? array_diff($tagIds ?? [], [$tag->id]) // remove if selected
+                        : array_merge($tagIds ?? [], [$tag->id]); // add if not selected
+                @endphp
 
-                        <!-- Blog Categories -->
-                        <div class="bg-white rounded-2xl shadow-lg p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-6 pb-3 border-b border-gray-200">BLOG CATEGORIES</h3>
-                            <div class="space-y-3">
-                                <a href="#" class="flex items-center justify-between text-gray-600 hover:text-cyan-600 transition-colors duration-300 py-2">
-                                    <span>Fashion</span>
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                    </svg>
-                                </a>
-                                <a href="#" class="flex items-center justify-between text-gray-600 hover:text-cyan-600 transition-colors duration-300 py-2">
-                                    <span>Design</span>
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                    </svg>
-                                </a>
-                                <a href="#" class="flex items-center justify-between text-gray-600 hover:text-cyan-600 transition-colors duration-300 py-2">
-                                    <span>Music</span>
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                    </svg>
-                                </a>
-                                <a href="#" class="flex items-center justify-between text-gray-600 hover:text-cyan-600 transition-colors duration-300 py-2">
-                                    <span>Reviews</span>
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                    </svg>
-                                </a>
-                                <a href="#" class="flex items-center justify-between text-gray-600 hover:text-cyan-600 transition-colors duration-300 py-2">
-                                    <span>News</span>
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                    </svg>
-                                </a>
-                                <a href="#" class="flex items-center justify-between text-gray-600 hover:text-cyan-600 transition-colors duration-300 py-2">
-                                    <span>Nature</span>
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                    </svg>
-                                </a>
-                                <a href="#" class="flex items-center justify-between text-gray-600 hover:text-cyan-600 transition-colors duration-300 py-2">
-                                    <span>Travel</span>
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                    </svg>
-                                </a>
-                                <a href="#" class="flex items-center justify-between text-gray-600 hover:text-cyan-600 transition-colors duration-300 py-2">
-                                    <span>Web Design</span>
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Post Tags -->
-                        <div class="bg-white rounded-2xl shadow-lg p-6">
-                            <h3 class="text-xl font-bold text-gray-900 mb-6 pb-3 border-b border-gray-200">POST TAGS</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-cyan-500 hover:text-white transition-all duration-300 cursor-pointer">Design</span>
-                                <span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-cyan-500 hover:text-white transition-all duration-300 cursor-pointer">Web</span>
-                                <span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-cyan-500 hover:text-white transition-all duration-300 cursor-pointer">Creative</span>
-                                <span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-cyan-500 hover:text-white transition-all duration-300 cursor-pointer">Modern</span>
-                                <span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-cyan-500 hover:text-white transition-all duration-300 cursor-pointer">Blog</span>
-                                <span class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm hover:bg-cyan-500 hover:text-white transition-all duration-300 cursor-pointer">Article</span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
+                <a href="{{ route('blog.index', ['tag' => $newTagIds]) }}"
+                   class="inline-block px-4 py-2 rounded-full border text-sm font-medium transition-all duration-300
+                       {{ $isSelected ? 'bg-cyan-600 text-white border-cyan-600' : 'bg-cyan-100 text-cyan-700 border-cyan-200 hover:bg-cyan-200' }}">
+                    #{{ $tag->name }}
+                </a>
+            @endforeach
         </div>
+    @if (!empty($tagIds))
+            <a href="{{ route('blog.index') }}"
+               class="inline-block text-sm text-red-500 hover:text-red-700 font-medium underline">
+                Clear Tags
+            </a>
+        @endif
     </div>
+</div>
+
 </x-app-layout>
