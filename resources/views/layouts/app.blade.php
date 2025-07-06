@@ -93,20 +93,6 @@
                 <div class="w-full max-w-none">
                     <!-- Content wrapper with glass morphism effect - much wider -->
                     <div class="bg-white/60 backdrop-blur-lg rounded-3xl shadow-2xl border border-gray-200/50 p-8 sm:p-12 lg:p-16 slide-up glow-effect mx-4 sm:mx-8 lg:mx-12">
-                        <!-- Logo section for main content -->
-                        <div class="text-center mb-8 slide-up" style="animation-delay: 0.2s;">
-                            <div class="flex flex-col items-center space-y-4">
-                                <div class="w-16 h-16 bg-indigo-600 rounded-2xl shadow-lg flex items-center justify-center glow-effect">
-                                    <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
-                                    </svg>
-                                </div>
-                                <div class="text-center">
-                                    <h1 class="text-2xl font-bold text-gray-800">{{ config('app.name', 'Laravel') }}</h1>
-                                    <p class="text-gray-600 text-sm mt-1">Your powerful platform</p>
-                                </div>
-                            </div>
-                        </div>
                         
                         <!-- Main content slot -->
                         <div class="slide-up" style="animation-delay: 0.4s;">
