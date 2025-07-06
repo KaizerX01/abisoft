@@ -9,7 +9,7 @@
                     <div class="max-w-md mx-auto">
                         <h1 class="text-4xl font-bold mb-4">{{ __('Welcome back!') }}</h1>
                         <p class="text-lg mb-6">{{ __('Ready to explore our amazing products, services, and formations?') }}</p>
-                        <button class="bg-white text-blue-600 hover:bg-blue-50 font-semibold py-3 px-6 rounded-lg transition duration-200">{{ __('Get Started') }}</button>
+                        <a href='#1' class="bg-white text-blue-600 hover:bg-blue-50 font-semibold py-3 px-6 rounded-lg transition duration-200">{{ __('Get Started') }}</a>
                     </div>
                 </div>
             </div>
@@ -78,7 +78,7 @@
             </div>
 
             <!-- Main Content Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8" id="1">
                 <!-- Left Column - Products & Services -->
                 <div class="lg:col-span-2 space-y-8">
                     <!-- Featured Products -->
@@ -111,7 +111,7 @@
 
 
                     <!-- Services Section -->
-                    <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="bg-white rounded-lg shadow-lg p-6" >
                         <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2M8 6a2 2 0 00-2 2v6" />
@@ -145,7 +145,7 @@
                     </div>
 
                     <!-- Formations Section -->
-<div class="bg-white rounded-lg shadow-lg p-6">
+<div class="bg-white rounded-lg shadow-lg p-6" >
     <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -176,7 +176,8 @@
 
                 <!-- Right Column - Blog & Profile -->
                 <div class="space-y-8">
-                                        <!-- Profile -->
+                <!-- Profile -->
+                @auth
                     <div class="bg-white rounded-lg shadow-lg p-6">
                         <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -214,7 +215,7 @@
                             </a>
                         </div>
                     </div>
-
+                @endauth
 
                                         <!-- Recent Blog Posts -->
                     <div class="bg-white rounded-lg shadow-lg p-6">

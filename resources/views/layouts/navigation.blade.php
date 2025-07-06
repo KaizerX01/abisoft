@@ -39,12 +39,29 @@
                 </div>
             </div>
 
+
+           @guest
+                <div class="space-x-4 py-5">
+                    <a href="{{ route('login') }}"
+                    class="text-green-700 hover:text-white hover:bg-blue-800 transition px-4 py-2 rounded-lg border border-blue-600">
+                        Login
+                    </a>
+                    <a href="{{ route('register') }}"
+                    class="bg-blue-700 text-white hover:bg-blue-900 transition px-4 py-2 rounded-lg">
+                        Register
+                    </a>
+                </div>
+            @endguest
+
+
+            @auth
+
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-4 font-medium rounded-lg text-slate-600 dark:text-slate-400 bg-white/80 dark:bg-gray-800/80 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-gray-800 transition-all duration-200 ease-in-out shadow-sm hover:shadow-md">
-                            <div class="font-semibold">{{ Auth::user()->name }}</div>
+                            <div class="font-semibold">@auth{{ Auth::user()->name }}@endauth</div>
 
                             <div class="ms-2">
                                 <svg class="fill-current h-4 w-4 transform transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -80,6 +97,8 @@
                     </x-slot>
                 </x-dropdown>
             </div>
+
+            @endauth
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
@@ -122,6 +141,7 @@
             </a>
         </div>
 
+        @auth
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-blue-100 dark:border-gray-600">
             <div class="px-4">
@@ -154,5 +174,6 @@
                 </form>
             </div>
         </div>
+        @endauth
     </div>
 </nav>

@@ -60,6 +60,61 @@ class ProductController extends Controller
         
         return view('products.index', compact('products', 'categories', 'categoryId'));
     }
+
+
+    public function create()
+    {
+        $categories = CategoryProduct::all();
+        return view('products.create', compact('categories'));
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'image' => 'nullable|image',
+            'category_product_id' => 'required|exists:category_products,id',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('product_images', 'public');
+        }
+
+        Product::create($validated);
+        return redirect()->route('products.index')->with('success', 'Produit créé avec succès.');
+    }
+
+    public function edit(Product $product)
+    {
+        $categories = CategoryProduct::all();
+        return view('products.edit', compact('product', 'categories'));
+    }
+
+    public function update(Request $request, Product $product)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'image' => 'nullable|image',
+            'category_product_id' => 'required|exists:category_products,id',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('product_images', 'public');
+        }
+
+        $product->update($validated);
+        return redirect()->route('products.index')->with('success', 'Produit mis à jour.');
+    }
+
+    public function destroy(Product $product)
+    {
+        $product->delete();
+        return redirect()->route('products.index')->with('success', 'Produit supprimé.');
+    }
     
     
 }
