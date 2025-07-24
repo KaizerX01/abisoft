@@ -13,27 +13,22 @@ class ServiceController extends Controller
         $categoryId = $request->query("category");
         $search = $request->query("search");
         $sort = $request->query("sort");
-        
-        // Get categories with product count
+
         $categories = CategoryService::withCount('services')->get();
-        
-        // Build the query
+
         $query = Service::with('category');
-        
-        // Apply category filter
+
         if ($categoryId) {
             $query->where('category_service_id', $categoryId);
         }
-        
-        // Apply search filter
+
         if ($search) {
             $query->where(function($q) use ($search) {
                 $q->where('name', 'like', '%' . $search . '%')
                   ->orWhere('description', 'like', '%' . $search . '%');
             });
         }
-        
-        // Apply sorting
+
         switch ($sort) {
             case 'name_asc':
                 $query->orderBy('name', 'asc');
@@ -52,13 +47,66 @@ class ServiceController extends Controller
                 break;
             default:
                 $query->orderBy('created_at', 'desc');
-                break;
         }
-        
-        // Paginate results (12 products per page)
+
         $services = $query->paginate(12)->withQueryString();
-        
+
         return view('services.index', compact('services', 'categories', 'categoryId'));
     }
-    
+
+    public function create()
+    {
+        $categories = CategoryService::all();
+        return view('services.create', compact('categories'));
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'image' => 'nullable|image',
+            'category_service_id' => 'required|exists:category_services,id',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('service_images', 'public');
+        }
+
+        Service::create($validated);
+
+        return redirect()->route('services.index')->with('success', 'Service créé avec succès.');
+    }
+
+    public function edit(Service $service)
+    {
+        $categories = CategoryService::all();
+        return view('services.edit', compact('service', 'categories'));
+    }
+
+    public function update(Request $request, Service $service)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'price' => 'required|numeric|min:0',
+            'image' => 'nullable|image',
+            'category_service_id' => 'required|exists:category_services,id',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('service_images', 'public');
+        }
+
+        $service->update($validated);
+
+        return redirect()->route('services.index')->with('success', 'Service mis à jour.');
+    }
+
+    public function destroy(Service $service)
+    {
+        $service->delete();
+        return redirect()->route('services.index')->with('success', 'Service supprimé.');
+    }
 }

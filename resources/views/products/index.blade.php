@@ -13,19 +13,8 @@
         </div>
       </div>
     </x-slot>
-    @auth
-    @role('admin')
-    <a href="{{ route('products.create') }}"
-      class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 
-          hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white text-base font-semibold 
-          rounded-xl shadow-lg transition duration-300 ease-in-out">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-      </svg>
-    Add a Product
-    </a>
-    @endrole
-@endauth
+
+    
     
 
     <div class="max-w-7xl mx-auto px-4 py-10">
@@ -156,35 +145,7 @@
                         {{ Str::limit($product->description, 120) }}
                     </p>
                 @endif
-                @auth
-                    @role('admin')
 
-                    <!-- Action Buttons -->
-                      <div class="pt-4 flex justify-between gap-3">
-                        <!-- Edit Button -->
-                        <a href="{{ route('products.edit', $product->id) }}"
-                          class="flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-lg transition text-sm shadow">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5h6m2 0a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h2M12 11v2m-2-2h4" />
-                            </svg>
-                            Edit
-                        </a>
-    
-                        <!-- Delete Button -->
-                        <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer ce produit ?');" class="inline-block">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"
-                                    class="flex items-center justify-center bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg transition text-sm shadow">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                                Delete
-                            </button>
-                        </form>
-                    </div>
-                    @endrole
-                @endauth
 
                       
 
