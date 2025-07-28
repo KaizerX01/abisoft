@@ -9,7 +9,17 @@ use Illuminate\Http\Request;
 
 class FormationController extends Controller
 {
-    public function index(Request $request)
+
+    public function show(Formation $formation)
+{
+
+    $formation->load('category');
+    
+    return view('formations.show', compact('formation'));
+}
+
+
+public function index(Request $request)
     {
         $categoryId = $request->query("category");
         $search = $request->query("search");

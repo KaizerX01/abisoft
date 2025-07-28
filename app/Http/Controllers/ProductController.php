@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+
+    public function show(Product $product)
+{
+    // Load the product with its category relationship
+    $product->load('category');
+    
+    return view('products.show', compact('product'));
+}
+
+
     public function index(Request $request)
     {
         $categoryId = $request->query("category");

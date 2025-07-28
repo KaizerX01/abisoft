@@ -49,28 +49,28 @@
       </div>
 
       <!-- Main Wrapper -->
-      <div class="ml-64 flex-1 flex flex-col overflow-y-auto">
+      <div class="ml-64 flex-1 flex flex-col overflow-y-auto p-16">
         <!-- Sidebar -->
         <aside class="fixed top-16 left-0 w-64 h-[calc(100vh-64px)] bg-gray-800 text-white p-6 overflow-y-auto transition-all duration-300 z-40">
-          <h1 class="text-2xl font-bold mb-6 text-center">Admin Panel</h1>
+          <h1 class="text-2xl font-bold mb-6 text-center">Panneau d'Administration</h1>
           <nav class="space-y-2">
             <a href="/admin/manage" class="flex items-center gap-3 px-4 py-3 rounded hover:bg-gray-700 transition-all duration-300">
-              <i class="fa-solid fa-layer-group w-5"></i> <span>Manage All</span>
+              <i class="fa-solid fa-layer-group w-5"></i> <span>Gérer Tout</span>
             </a>
             <a href="/admin/categories-tags" class="flex items-center gap-3 px-4 py-3 rounded hover:bg-gray-700 transition-all duration-300">
-              <i class="fa-solid fa-tags w-5"></i> <span>Categories</span>
+              <i class="fa-solid fa-tags w-5"></i> <span>Catégories</span>
             </a>
             <a href="/admin/users" class="flex items-center gap-3 px-4 py-3 rounded hover:bg-gray-700 transition-all duration-300">
-              <i class="fa-solid fa-users w-5"></i> <span>Users</span>
+              <i class="fa-solid fa-users w-5"></i> <span>Utilisateurs</span>
             </a>
             <a href="/admin/activity-logs" class="flex items-center gap-3 px-4 py-3 rounded hover:bg-gray-700 transition-all duration-300">
-              <i class="fa-solid fa-chart-line w-5"></i> <span>Activity</span>
+              <i class="fa-solid fa-chart-line w-5"></i> <span>Activité</span>
             </a>
             <a href="/admin/partners" class="flex items-center gap-3 px-4 py-3 rounded hover:bg-gray-700 transition-all duration-300">
-              <i class="fa-solid fa-handshake w-5"></i> <span>Partners</span>
+              <i class="fa-solid fa-handshake w-5"></i> <span>Partenaires</span>
             </a>
             <a href="/admin/settings" class="flex items-center gap-3 px-4 py-3 rounded hover:bg-gray-700 transition-all duration-300">
-              <i class="fa-solid fa-gear w-5"></i> <span>Paramètres de site</span>
+              <i class="fa-solid fa-gear w-5"></i> <span>Paramètres du Site</span>
             </a>
           </nav>
         </aside>

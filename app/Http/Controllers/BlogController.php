@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
+
+
+    public function show(BlogPost $post)
+{
+    $post->load('tags');
+    return view('blog.show', compact('post'));
+}
+
+
     // Display a list of blog posts with optional tag filtering
     public function index(Request $request)
     {
@@ -37,26 +46,37 @@ class BlogController extends Controller
     }
 
     // Store the new blog post
-    public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'tags' => 'nullable|array',
-            'tags.*' => 'exists:blog_tags,id',
-        ]);
+   public function store(Request $request)
+{
+    $validated = $request->validate([
+        'title' => 'required|string|max:255',
+        'content' => 'required|string',
+        'description' => 'nullable|string',
+        'image' => 'nullable|image',
+        'tags' => 'nullable|array',
+        'tags.*' => 'exists:blog_tags,id',
+    ]);
 
-        $post = BlogPost::create([
-            'title' => $request->title,
-            'content' => $request->content,
-        ]);
-
-        if ($request->has('tags')) {
-            $post->tags()->sync($request->tags);
-        }
-
-        return redirect()->route('blog.index')->with('success', 'Article créé avec succès.');
+    // Handle image upload
+    if ($request->hasFile('image')) {
+        $validated['image'] = $request->file('image')->store('blog_images', 'public');
     }
+
+    // Create the post
+    $post = BlogPost::create([
+        'title' => $validated['title'],
+        'content' => $validated['content'],
+        'description' => $validated['description'] ?? null,
+        'image' => $validated['image'] ?? null,
+    ]);
+
+    // Attach tags if provided
+    if (!empty($validated['tags'])) {
+        $post->tags()->sync($validated['tags']);
+    }
+
+    return redirect()->route('blog.index')->with('success', 'Article créé avec succès.');
+}
 
     // Show the form to edit a blog post
     public function edit(BlogPost $post)
@@ -68,24 +88,38 @@ class BlogController extends Controller
     }
 
     // Update the blog post
-    public function update(Request $request, BlogPost $post)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'tags' => 'nullable|array',
-            'tags.*' => 'exists:blog_tags,id',
-        ]);
 
-        $post->update([
-            'title' => $request->title,
-            'content' => $request->content,
-        ]);
+    
+        public function update(Request $request, BlogPost $post)
+        {
+            $validated = $request->validate([
+                'title' => 'required|string|max:255',
+                'content' => 'required|string',
+                'description' => 'nullable|string',
+                'image' => 'nullable|image',
+                'tags' => 'nullable|array',
+                'tags.*' => 'exists:blog_tags,id',
+            ]);
 
-        $post->tags()->sync($request->tags ?? []);
+            // If new image uploaded, delete old one and store new
+            if ($request->hasFile('image')) {
+                if ($post->image && Storage::disk('public')->exists($post->image)) {
+                    Storage::disk('public')->delete($post->image);
+                }
+                $validated['image'] = $request->file('image')->store('blog_images', 'public');
+            }
 
-        return redirect()->route('blog.index')->with('success', 'Article mis à jour avec succès.');
-    }
+            $post->update([
+                'title' => $validated['title'],
+                'content' => $validated['content'],
+                'description' => $validated['description'] ?? $post->description,
+                'image' => $validated['image'] ?? $post->image,
+            ]);
+
+            $post->tags()->sync($validated['tags'] ?? []);
+
+            return redirect()->route('blog.index')->with('success', 'Article mis à jour avec succès.');
+        }
 
     // Delete a blog post
     public function destroy(BlogPost $post)

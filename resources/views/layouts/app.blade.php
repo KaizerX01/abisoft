@@ -13,6 +13,9 @@
         <link href="https://fonts.bunny.net/css?family=inter:300,400,500,600,700&display=swap" rel="stylesheet" />
         <script src="https://kit.fontawesome.com/yourkitid.js" crossorigin="anonymous"></script>
 
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+        <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" /> 
         
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -66,15 +69,18 @@
               }
         </style>
     </head>
-    <body class="font-sans antialiased bg-white text-gray-900">
-        <div class="min-h-screen flex flex-col relative">
+    <body class="font-sans antialiased bg-white text-gray-900 ">
+                    <!-- Navigation with enhanced styling -->
+        <div class="relative z-20 navigation-slide">
+                @include('layouts.navigation')
+            </div>
+
+            
+        <div class="min-h-screen flex flex-col relative pt-16">
             <!-- Subtle background pattern -->
             <div class="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-indigo-50 opacity-70"></div>
             
-            <!-- Navigation with enhanced styling -->
-            <div class="relative z-20 navigation-slide">
-                @include('layouts.navigation')
-            </div>
+            
             
             <!-- Page Heading with enhanced styling and wider container -->
             @isset($header)

@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
+
+        public function show(Service $service)
+{
+
+    $service->load('category');
+    
+    return view('services.show', compact('service'));
+}
+
     public function index(Request $request)
     {
         $categoryId = $request->query("category");

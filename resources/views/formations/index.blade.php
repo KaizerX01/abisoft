@@ -157,7 +157,22 @@
                   </svg>
                   <span class="ml-1 text-gray-500">4.5</span>
                 </div>
+
+
               </div>
+
+                               <!-- View More Button -->
+                <div class="pt-4">
+                    <a href="{{ route('formations.show', $formation->id) }}"
+                      class="btn btn-sm md:btn-md btn-outline btn-success w-full font-semibold tracking-wide transition-all duration-300 hover:scale-105">
+                        Voir plus
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+
+
             </div>
           </div>
         @empty

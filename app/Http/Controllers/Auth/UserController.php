@@ -49,8 +49,8 @@ class UserController extends Controller
         $user = Auth::user();
 
         return $user->hasRole('admin')
-            ? redirect()->route('dashboard')
-            : redirect()->route('dashboard');
+            ? redirect()->route('admin.dashboard')
+            : redirect()->route('home');
     }
 
     return back()->withErrors([

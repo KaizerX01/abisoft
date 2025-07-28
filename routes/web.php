@@ -21,7 +21,6 @@ Route::get('/welcome', function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
 
@@ -47,14 +46,6 @@ require __DIR__.'/auth.php';
 
 
 
-Route::get('/products',[ProductController::class,'index'])->name('products.index');
-
-Route::get('/services',[ServiceController::class,'index'])->name('services.index');
-
-Route::get('/formations',[FormationController::class,'index'])->name('formations.index');
-
-Route::get('/blog',[BlogController::class,'index'])->name('blog.index');
-
 
 
 
@@ -67,6 +58,7 @@ Route::middleware(['admin'])->group(function () {
         Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
         Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
         Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+
         // Services
     Route::get('/services/create', [ServiceController::class, 'create'])->name('services.create');
     Route::post('/services', [ServiceController::class, 'store'])->name('services.store');
@@ -115,4 +107,16 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/activity-logs', [ActivityLogController::class, 'index'])->name('admin.activity-logs.index');
         
     });
+
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/products',[ProductController::class,'index'])->name('products.index');
+
+Route::get('/services/{service}', [ServiceController::class, 'show'])->name('services.show');
+Route::get('/services',[ServiceController::class,'index'])->name('services.index');
+
+Route::get('/formations/{formation}', [FormationController::class, 'show'])->name('formations.show');
+Route::get('/formations',[FormationController::class,'index'])->name('formations.index');
+
+Route::get('/blog/{post}', [BlogController::class, 'show'])->name('blog.show');
+Route::get('/blog',[BlogController::class,'index'])->name('blog.index');
 
