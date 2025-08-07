@@ -20,9 +20,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
-        TagSeeder::class,
-    ]);
+            $this->call(FeedMeSeeder::class);
+
 }
 
 }

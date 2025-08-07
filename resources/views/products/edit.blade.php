@@ -1,46 +1,77 @@
 <x-app-layout>
-    <div class="max-w-3xl mx-auto p-8 bg-white rounded-xl shadow-lg mt-12 border border-gray-200">
-        <h1 class="text-3xl font-semibold text-gray-900 mb-8">Modifier le produit</h1>
+    <div class="max-w-3xl mx-auto p-6 mt-12 bg-gradient-to-br from-white/90 to-gray-50 rounded-xl shadow-2xl border border-gray-200/50 backdrop-blur-md">
 
-        <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data" class="space-y-7">
+        <h1 class="text-4xl font-extrabold text-gray-900 mb-8 text-center">Modifier le Produit</h1>
+
+        <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
             @csrf
             @method('PUT')
 
-            <div>
-                <label for="name" class="block text-gray-700 font-medium mb-2">Nom du produit</label>
-                <input type="text" name="name" id="name" value="{{ old('name', $product->name) }}" required
-                       class="w-full rounded-md border border-gray-300 bg-gray-50 text-gray-900 focus:ring-indigo-400 focus:border-indigo-400 transition duration-150 ease-in-out @error('name') border-red-500 focus:ring-red-400 focus:border-red-400 @enderror"
-                       placeholder="Nom du produit">
-                @error('name') <p class="text-red-600 text-sm mt-1">{{ $message }}</p> @enderror
+            <div class="form-control">
+                <label for="name" class="block text-lg font-medium text-gray-700 mb-2">Nom du Produit</label>
+                <input 
+                    type="text" name="name" id="name" value="{{ old('name', $product->name) }}" required
+                    class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white/80 text-gray-900
+                           placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:border-transparent
+                           transition-all duration-200 ease-in-out shadow-sm
+                           @error('name') border-red-500 focus:ring-red-500 @enderror"
+                    placeholder="Entrez le nom du produit">
+                @error('name')
+                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
-            <div>
-                <label for="description" class="block text-gray-700 font-medium mb-2">Description</label>
-                <textarea name="description" id="description" rows="5"
-                          class="w-full rounded-md border border-gray-300 bg-gray-50 text-gray-900 focus:ring-indigo-400 focus:border-indigo-400 transition duration-150 ease-in-out @error('description') border-red-500 focus:ring-red-400 focus:border-red-400 @enderror"
-                          placeholder="Description du produit">{{ old('description', $product->description) }}</textarea>
-                @error('description') <p class="text-red-600 text-sm mt-1">{{ $message }}</p> @enderror
+            <div class="form-control">
+                <label for="description" class="block text-lg font-medium text-gray-700 mb-2">Description</label>
+                <textarea 
+                    name="description" id="description" rows="5"
+                    class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white/80 text-gray-900
+                           placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:border-transparent
+                           transition-all duration-200 ease-in-out shadow-sm
+                           @error('description') border-red-500 focus:ring-red-500 @enderror"
+                    placeholder="Entrez la description du produit">{{ old('description', $product->description) }}</textarea>
+                @error('description')
+                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
-            <div>
-                <label for="price" class="block text-gray-700 font-medium mb-2">Prix (€)</label>
-                <input type="number" name="price" id="price" step="0.01" min="0" value="{{ old('price', $product->price) }}" required
-                       class="w-full rounded-md border border-gray-300 bg-gray-50 text-gray-900 focus:ring-indigo-400 focus:border-indigo-400 transition duration-150 ease-in-out @error('price') border-red-500 focus:ring-red-400 focus:border-red-400 @enderror"
-                       placeholder="Prix du produit">
-                @error('price') <p class="text-red-600 text-sm mt-1">{{ $message }}</p> @enderror
+            <div class="form-control">
+                <label for="price" class="block text-lg font-medium text-gray-700 mb-2">Prix (€)</label>
+                <input 
+                    type="number" name="price" id="price" step="0.01" min="0" value="{{ old('price', $product->price) }}" required
+                    class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white/80 text-gray-900
+                           placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:border-transparent
+                           transition-all duration-200 ease-in-out shadow-sm
+                           @error('price') border-red-500 focus:ring-red-500 @enderror"
+                    placeholder="Entrez le prix du produit">
+                @error('price')
+                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
-            <div>
-                <label for="image" class="block text-gray-700 font-medium mb-2">Image (optionnelle)</label>
-                <input type="file" name="image" id="image" accept="image/*"
-                       class="w-full rounded-md border border-gray-300 bg-gray-50 text-gray-700 focus:ring-indigo-400 focus:border-indigo-400 transition duration-150 ease-in-out @error('image') border-red-500 focus:ring-red-400 focus:border-red-400 @enderror">
-                @error('image') <p class="text-red-600 text-sm mt-1">{{ $message }}</p> @enderror
+            <div class="form-control">
+                <label for="image" class="block text-lg font-medium text-gray-700 mb-2">Image (optionnelle)</label>
+                <input
+                    type="file" name="image" id="image" accept="image/*"
+                    class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white/80 text-gray-700
+                           focus:ring-2 focus:ring-indigo-500 focus:border-transparent
+                           transition-all duration-200 ease-in-out shadow-sm
+                           @error('image') border-red-500 focus:ring-red-500 @enderror"
+                >
+                @error('image')
+                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
-            <div>
-                <label for="category_product_id" class="block text-gray-700 font-medium mb-2">Catégorie</label>
-                <select name="category_product_id" id="category_product_id" required
-                        class="w-full rounded-md border border-gray-300 bg-gray-50 text-gray-900 focus:ring-indigo-400 focus:border-indigo-400 transition duration-150 ease-in-out @error('category_product_id') border-red-500 focus:ring-red-400 focus:border-red-400 @enderror">
+            <div class="form-control">
+                <label for="category_product_id" class="block text-lg font-medium text-gray-700 mb-2">Catégorie</label>
+                <select
+                    name="category_product_id" id="category_product_id" required
+                    class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white/80 text-gray-900
+                           focus:ring-2 focus:ring-indigo-500 focus:border-transparent
+                           transition-all duration-200 ease-in-out shadow-sm
+                           @error('category_product_id') border-red-500 focus:ring-red-500 @enderror"
+                >
                     <option value="" disabled>-- Sélectionnez une catégorie --</option>
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}" {{ old('category_product_id', $product->category_product_id) == $category->id ? 'selected' : '' }}>
@@ -48,15 +79,21 @@
                         </option>
                     @endforeach
                 </select>
-                @error('category_product_id') <p class="text-red-600 text-sm mt-1">{{ $message }}</p> @enderror
+                @error('category_product_id')
+                    <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div>
-                <button type="submit"
-                        class="w-full bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 text-white font-semibold py-3 rounded-lg transition duration-200 ease-in-out shadow-md">
-                    Mettre à jour le produit
+                <button
+                    type="submit"
+                    class="w-full bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white font-semibold py-3 rounded-lg
+                           shadow-md hover:shadow-lg transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                >
+                    Mettre à Jour le Produit
                 </button>
             </div>
         </form>
+
     </div>
 </x-app-layout>

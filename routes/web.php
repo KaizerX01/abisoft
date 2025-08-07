@@ -15,6 +15,27 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\ServiceController;
 
+
+
+// Fallback route for undefined routes (triggers 404)
+Route::fallback(function () {
+    abort(404, 'Page Not Found');
+});
+
+// Test routes for error scenarios (optional, for debugging)
+Route::get('/test-404', function () {
+    abort(404, 'Test 404 Error');
+})->name('test.404');
+
+Route::get('/test-500', function () {
+    throw new \Exception('Test 500 Server Error');
+})->name('test.500');
+
+Route::get('/test-403', function () {
+    abort(403, 'Access Forbidden');
+})->name('test.403');
+
+
 Route::get('/welcome', function () {
     return view('welcome');
 });

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Product;
 use App\Models\User;
@@ -39,5 +40,10 @@ class AppServiceProvider extends ServiceProvider
         CategoryService::observe(AdminActivityObserver::class);
         CategoryFormation::observe(AdminActivityObserver::class);
         BlogTag::observe(AdminActivityObserver::class);
+
+        View::composer('layouts.app', function ($view) {
+        $settings = Setting::first(); // Fetch the first settings record
+        $view->with('settings', $settings);
+         });
     }
 }
