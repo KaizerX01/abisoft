@@ -8,6 +8,7 @@ use App\Models\CategoryService;
 use App\Models\Formation;
 use App\Models\Product;
 use App\Models\Service;
+use App\Models\Setting;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,7 +21,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-            $this->call(FeedMeSeeder::class);
+            Setting::create([
+            'facebook' => 'https://facebook.com/example',
+            'position' => 'Manager',
+            'linkedin' => 'https://linkedin.com/in/example',
+            'instagram' => 'https://instagram.com/example',
+            'phone' => '+1234567890'
+        ]);
 
 }
 
