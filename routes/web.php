@@ -3,6 +3,9 @@
 use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryTagController;
+use App\Http\Controllers\ChatbotController;
+use App\Http\Controllers\ChatbotDataController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FormationController;
@@ -140,4 +143,10 @@ Route::get('/formations',[FormationController::class,'index'])->name('formations
 
 Route::get('/blog/{post}', [BlogController::class, 'show'])->name('blog.show');
 Route::get('/blog',[BlogController::class,'index'])->name('blog.index');
+
+//chatbot
+
+Route::get('/chat', [ChatController::class, 'index'])->name('chat.index');
+Route::post('/chat/send', [ChatController::class, 'send'])->name('chat.send');
+Route::post('/bot/retrain', [ChatController::class, 'retrain'])->name('bot.retrain');
 
